@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Pagina de Ticket</title>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<div class="card">
+
+			<p:toolbarGroup>
+				<p:commandButton value="Crear Ticket" icon="pi pi-plus"
+					actionListener="#{hitssServices.generarTicket}"
+					update=":form:manage-product-content"
+					oncomplete="PF('manageProductDialog').show()"
+					styleClass="ui-button-success" style="margin-right: .5rem">
+					<p:resetInput target=":form:manage-product-content" />
+				</p:commandButton>
+			</p:toolbarGroup>
+
+			<p:dataTable value="#{hitssServices.mostrarDatos()}" var="ticker">
+				<p:column headerText="Ticket">
+					<h:outputText value="#{ticker.name_ticket}" />
+				</p:column>
+
+				<p:column headerText="Status">
+					<h:outputText value="#{ticker.status}" />
+				</p:column>
+
+				<p:column headerText="Priority">
+					<h:outputText value="#{ticker.prioridad}" />
+				</p:column>
+
+				<p:column headerText="Case Owner">
+					<h:outputText value="#{ticker.case_owner}" />
+				</p:column>
+
+				<p:column headerText="Due Date">
+					<h:outputText value="#{ticker.due_date}" />
+				</p:column>
+
+				<p:column headerText="Deals">
+					<h:outputText value="#{ticker.details}" />
+				</p:column>
+
+
+				<!-- 
+				<p:column headerText="Status">
+					<h:outputText value="active" />
+				</p:column>
+
+				<p:column headerText="Priority">
+					<h:outputText value="high" />
+				</p:column>
+
+				<p:column headerText="Case Owner">
+					<h:outputText value="hgalarza" />
+				</p:column>
+
+				<p:column headerText="Due Date">
+					<h:outputText value="04/03/2021" />
+				</p:column>
+
+				<p:column headerText="Deals">
+					<h:outputText value="Mobile Deal" />
+				</p:column> -->
+			</p:dataTable>
+		</div>
+	</h:form>
+
+</h:body>
+</html>
